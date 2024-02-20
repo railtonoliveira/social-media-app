@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import FeedPost from './src/components/FeedPost';
+import posts from './assets/data/posts.json';
 
 const post = {
   id: 'p1',
@@ -21,7 +22,10 @@ const post = {
 export default function App() {
   return (
     <View style={styles.container}>
-      <FeedPost post={post} />
+      <FlatList
+        data={posts}
+        renderItem={({ item }) => <FeedPost post={item} />}
+      />
       <StatusBar style="auto" />
     </View>
   );
@@ -30,7 +34,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'lightgray',
     alignItems: 'center',
     justifyContent: 'center',
   },
